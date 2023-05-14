@@ -1,13 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="stylesheet" href="./src/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Age calculator app</title>
+</head>
+<body>
+
+  <div class="card">
+    <section class="input-section">
+      <form class="inputs" name="date">
+        <div class="input-group">
+          <label for="day">DAY</label>
+          <input type="text" name="day" class="input" id="day" placeholder="DD">
+          <p class="error-msg"></p>
+        </div>
+        <div class="input-group">
+          <label for="month">MONTH</label>
+          <input type="text" name="month" class="input" id="month" placeholder="MM">
+          <p class="error-msg"></p>
+        </div>
+        <div class="input-group">
+          <label for="year">YEAR</label>
+          <input type="text" name="year" class="input" id="year" placeholder="YYYY">
+          <p class="error-msg"></p>
+        </div>
+      </form>
+      
+      <div class="btn-container">
+        <hr class="line">
+        <button class="calculate-btn">
+          <img src="./public/images/icon-arrow.svg" alt="calculate-btn" id="calcBtn">
+        </button>
+      </div>
+    </section>
+
+    <section class="results-section">
+      <h1><span class="result">--</span> years</h1>
+      <h1><span class="result">--</span> months</h1>
+      <h1><span class="result">--</span> days</h1>
+    </section>
+  </div>
+  
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="https://github.com/PNkosi">Perfect Nkosi</a>.
+  </footer>
+
+  <script src="./src/main.ts" type="module"></script>
+</body>
 </html>
