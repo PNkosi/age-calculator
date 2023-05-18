@@ -109,10 +109,16 @@ input:focus {
   padding: 2rem;
   margin: 0 auto;
   cursor: pointer;
+  transition: all 0.5s ease-in-out;
 }
 
-.calculate-btn img {
-  width: 35px;
+/*.calculate-btn img {*/
+/*  width: 35px;*/
+/*}*/
+
+.calculate-btn:hover {
+  background-color: var(--off-black);
+  transform: scale(0.9);
 }
 
 .results-section {

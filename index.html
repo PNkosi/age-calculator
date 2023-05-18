@@ -19,7 +19,7 @@
         <div class="input-group">
           <label for="day">DAY</label>
           <input type="text" name="day" class="input" id="day" placeholder="DD">
-          <p class="error-msg"></p>
+          <p class="error-msg" id="invalid-date-error"></p>
         </div>
         <div class="input-group">
           <label for="month">MONTH</label>
@@ -36,15 +36,15 @@
       <div class="btn-container">
         <hr class="line">
         <button class="calculate-btn">
-          <img src="./public/images/icon-arrow.svg" alt="calculate-btn" id="calcBtn">
+          <img src="/images/icon-arrow.svg" alt="calculate-btn" id="calcBtn">
         </button>
       </div>
     </section>
 
     <section class="results-section">
-      <h1><span class="result">--</span> years</h1>
-      <h1><span class="result">--</span> months</h1>
-      <h1><span class="result">--</span> days</h1>
+      <h1><span class="result" id="day-result">--</span> years</h1>
+      <h1><span class="result" id="month-result">--</span> months</h1>
+      <h1><span class="result" id="year-result">--</span> days</h1>
     </section>
   </div>
   
