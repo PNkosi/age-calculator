@@ -1,3 +1,4 @@
+import * as moment from "moment/moment";
 /**
  * Receives the day, month, and year as strings and return a date
  * in the format "DD/MM/YY"
@@ -51,37 +52,41 @@ const ISOFormat = (userDateOfBirth: string) => {
     }
 }
 
-export const getDateResult = (userDateOfBirth: string) => {
-    const { date } = ISOFormat(userDateOfBirth)
-    const today = new Date()
+type result = {
+    days: string,
+    months: string,
+    years: string
+}
+export const getDateResult = (userDateOfBirth: string): result => {
+    const { isoFormatted} = ISOFormat(userDateOfBirth)
+    const userDOB = moment(isoFormatted, 'YYYY-MM-DD')
 
-    // Calculate years
-    let years: number
-    if (today.getMonth() > date.getMonth() ||
-        (today.getMonth() == date.getMonth() && today.getDate() >= date.getDate())) {
-        years = today.getFullYear() - date.getFullYear()
-    }
-    else years = today.getFullYear() - date.getFullYear() - 1
-
-    // Calculate months
-    let months: number
-    if (today.getDate() >= date.getDate())
-        months = today.getMonth()
-    else if (today.getDate() < date.getDate())
-        months = today.getMonth() - date.getMonth() - 1
-    // Make months positive
-    // @ts-ignore
-    if (months) {
-        months = months < 0 ? months + 12 : months
-    }
-
-    // Calculate days
+    const todayDate = moment()
+    let months = todayDate.diff(userDOB, 'months')
+    let years = Math.floor(months / 12)
+    let balanceMonths = months % 12
     let days: number
-    const monthDays: number[] = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    if (today.getDate() >= date.getDate())
-        days = today.getDate() - date.getDate()
-    else days = today.getDate() - date.getDate() + monthDays[date.getMonth()]
+    if (!balanceMonths) {
+        months = 0
+        const dob_date = userDOB.date()
+        const todayMonth = userDOB.month()
+        const constructDate = moment().month(todayMonth).date(dob_date)
+        days = todayDate.diff(constructDate, 'days')
+    }
+    else {
+        months = balanceMonths;
+        const dob_date = userDOB.date();
+        const todayMonth = todayDate.month();
+        const construct_date = moment().month(todayMonth).date(dob_date);
+        days = todayDate.diff(construct_date, 'days');
+        if(days < 0){
+            days = 30 + days;
+        }
+    }
 
-    // @ts-ignore
-    return { days, months, years}
+    return {
+        days: days.toString(),
+        months: months.toString(),
+        years: years.toString()
+    }
 }

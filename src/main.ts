@@ -31,10 +31,10 @@ calculateBtn.addEventListener('click', () => {
         return
     }
 
-    const {days, months, years} = getDateResult(dateOfBirth)
-    dayResult.textContent = days.toString()
-    monthResult.textContent = months.toString()
-    yearResult.textContent = years.toString()
+    const data = getDateResult(dateOfBirth)
+    dayResult.textContent = data.days
+    monthResult.textContent = data.months
+    yearResult.textContent = data.years
 })
 
 inputs.forEach(input => {

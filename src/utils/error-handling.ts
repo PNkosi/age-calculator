@@ -88,8 +88,7 @@ export const removeHighlight = (element: HTMLElement) => {
 }
 
 export const clearErrorWarning = (e: FocusEvent) => {
-    // @ts-ignore
-    const inputId: string = e.target?.id
+    const inputId: string = (<HTMLElement>e.target).id
     const inputOnFocus = document.getElementById(inputId) as HTMLInputElement
 
     const parent = inputOnFocus.parentElement as HTMLElement
@@ -97,12 +96,13 @@ export const clearErrorWarning = (e: FocusEvent) => {
     else parent.classList.remove('error')
 
     // Resetting the result displays
-    // @ts-ignore
-    document.getElementById('day-result').textContent = '--'
-    // @ts-ignore
-    document.getElementById('month-result').textContent = '--'
-    // @ts-ignore
-    document.getElementById('year-result').textContent = '--'
+    const dayResult = document.getElementById('day-result') as HTMLElement
+    const monthResult = document.getElementById('month-result') as HTMLElement
+    const yearResult = document.getElementById('year-result') as HTMLElement
+
+    dayResult.textContent = '--'
+    monthResult.textContent = '--'
+    yearResult.textContent = '--'
 
     // Getting all the sibling (including input) elements of the currently focused input element
     const siblingElements = Array.from(parent.children)
