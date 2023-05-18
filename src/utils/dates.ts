@@ -52,11 +52,8 @@ const ISOFormat = (userDateOfBirth: string) => {
 }
 
 export const getDateResult = (userDateOfBirth: string) => {
-    const { isoFormatted, date } = ISOFormat(userDateOfBirth)
+    const { date } = ISOFormat(userDateOfBirth)
     const today = new Date()
-    const currentDay = today.getDate()
-    const currentMonth = today.getMonth() + 1
-    const currentYear = today.getFullYear()
 
     // Calculate years
     let years: number
@@ -73,6 +70,7 @@ export const getDateResult = (userDateOfBirth: string) => {
     else if (today.getDate() < date.getDate())
         months = today.getMonth() - date.getMonth() - 1
     // Make months positive
+    // @ts-ignore
     if (months) {
         months = months < 0 ? months + 12 : months
     }
@@ -84,5 +82,6 @@ export const getDateResult = (userDateOfBirth: string) => {
         days = today.getDate() - date.getDate()
     else days = today.getDate() - date.getDate() + monthDays[date.getMonth()]
 
+    // @ts-ignore
     return { days, months, years}
 }

@@ -2,7 +2,7 @@
  * Highlights the label, input and display error message for 2 seconds
  * @param element - Represents the parent div of the label, input, and error message
  */
-const highlightEmptyField = (element: HTMLElement) => {
+const highlightEmptyField = (element: Element) => {
     if (element instanceof HTMLParagraphElement)
         element.textContent = 'This field is required'
 
@@ -20,7 +20,7 @@ export const emptyFields = (inputs: NodeListOf<HTMLInputElement>): boolean => {
             const parent = input.parentElement as HTMLElement
             parent.classList.add('error')
             const collection = parent.children as HTMLCollection
-            const children: HTMLElement[] = Array.from(collection)
+            const children: Element[] = Array.from(collection)
 
             for (const childElement of children) {
                 highlightEmptyField(childElement)
@@ -36,7 +36,7 @@ export const invalidInputs = (inputs: NodeListOf<HTMLInputElement>) => {
     for (const input of inputs) {
         const parent = input.parentElement as HTMLElement
         const collection = parent.children as HTMLCollection
-        const children: HTMLElement[] = Array.from(collection)
+        const children: Element[] = Array.from(collection)
         let inputValue = parseInt(input.value)
 
         // Common style for any invalid input
@@ -88,6 +88,7 @@ export const removeHighlight = (element: HTMLElement) => {
 }
 
 export const clearErrorWarning = (e: FocusEvent) => {
+    // @ts-ignore
     const inputId: string = e.target?.id
     const inputOnFocus = document.getElementById(inputId) as HTMLInputElement
 
@@ -96,8 +97,11 @@ export const clearErrorWarning = (e: FocusEvent) => {
     else parent.classList.remove('error')
 
     // Resetting the result displays
+    // @ts-ignore
     document.getElementById('day-result').textContent = '--'
+    // @ts-ignore
     document.getElementById('month-result').textContent = '--'
+    // @ts-ignore
     document.getElementById('year-result').textContent = '--'
 
     // Getting all the sibling (including input) elements of the currently focused input element
