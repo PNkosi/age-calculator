@@ -16,8 +16,14 @@ body {
 .card {
   background-color: var(--white);
   border-radius: 2rem 2rem 8rem 2rem;
-  margin: 0 auto;
+  margin: 2rem auto;
   padding: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    width: 50%;
+  }
 }
 
 .inputs {
@@ -99,10 +105,6 @@ input:focus {
   cursor: pointer;
   transition: all 0.5s ease-in-out;
 }
-
-/*.calculate-btn img {*/
-/*  width: 35px;*/
-/*}*/
 
 .calculate-btn:hover {
   background-color: var(--off-black);
